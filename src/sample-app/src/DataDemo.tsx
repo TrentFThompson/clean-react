@@ -1,9 +1,6 @@
-// Simple example of
-
 import { useDataContext } from '../../clean-react/react';
 import { useEffect, useState } from 'react';
 
-// So in your internal source code, you would define the types for your business logic
 type Item = {
     id: string;
     text: string;

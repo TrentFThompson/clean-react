@@ -10,19 +10,17 @@ import {
 export class HttpDataService implements IDataService {
     constructor(
         private baseUrl: string,
-        private authService?: IAuthService, // optional
+        private authService?: IAuthService,
     ) {}
 
     private async request<T>(path: string, options?: RequestInit): Promise<T> {
         let token: string | null = null;
 
-        // Only fetch token if an auth service was provided
         if (this.authService) {
             try {
                 const session = await this.authService.getSession();
                 token = session?.token ?? null;
             } catch (err) {
-                // If auth service fails, treat it as a service error
                 throw new ServiceError('Failed to retrieve auth session', err);
             }
         }
@@ -41,7 +39,6 @@ export class HttpDataService implements IDataService {
             throw new ServiceError('Network failure', err);
         }
 
-        // Domain error mapping
         if (res.status === 404) throw new NotFoundError();
         if (res.status === 401) throw new UnauthorizedError();
         if (res.status === 400) {
@@ -53,7 +50,6 @@ export class HttpDataService implements IDataService {
             throw new ServiceError(`Unexpected status ${res.status}`);
         }
 
-        // Parse JSON safely
         try {
             return await res.json();
         } catch (err) {

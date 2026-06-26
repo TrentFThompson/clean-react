@@ -7,19 +7,17 @@ export class MockDataService implements IDataService {
 
     constructor(initialData?: Store) {
         if (initialData) {
-            this.store = JSON.parse(JSON.stringify(initialData)); // deep clone
+            this.store = JSON.parse(JSON.stringify(initialData));
         }
     }
 
-    // Utility: ensure a collection exists
     private ensureCollection(key: string) {
         if (!this.store[key]) {
             this.store[key] = [];
         }
     }
 
-    // Utility: simulate async behavior
-    private async delay(ms = 50) {
+    private async delay(ms = 1000) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
 

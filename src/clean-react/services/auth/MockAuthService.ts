@@ -16,9 +16,8 @@ export class MockAuthService implements IAuthService {
     }
 
     async loginWithCredentials(email: string, password: string): Promise<AuthSession | null> {
-        // Fake login flow
         this.session = {
-            user: { email },
+            user: { email, name: 'Tony Soprano' },
             token: 'stub-token',
         };
         this.notify();
