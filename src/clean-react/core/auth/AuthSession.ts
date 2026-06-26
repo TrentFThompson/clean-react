@@ -1,4 +1,4 @@
 export type AuthSession = {
-    user: { email: string } | null;
+    user: { email?: string; name?: string } | null;
     token: string | null;
 };

@@ -1,19 +1,26 @@
+// Simple example of
+
 import { useDataContext } from '../../clean-react/react';
 import { useEffect, useState } from 'react';
+
+// So in your internal source code, you would define the types for your business logic
+type Item = {
+    id: string;
+    text: string;
+};
 
 export function DataDemo() {
     const { dataService } = useDataContext();
 
-    const [items, setItems] = useState<Array<{ id: string; text: string }> | null>(null);
+    const [items, setItems] = useState<Array<Item> | null>(null);
     const [loading, setLoading] = useState(true);
     const [creating, setCreating] = useState(false);
     const [text, setText] = useState('');
 
-    // Load items on mount
     async function loadItems() {
         setLoading(true);
         try {
-            const result = await dataService.list<{ id: string; text: string }>('items');
+            const result = await dataService.list<Item>('items');
             setItems(result);
         } finally {
             setLoading(false);
@@ -32,7 +39,7 @@ export function DataDemo() {
         try {
             await dataService.create('items', { text });
             setText('');
-            await loadItems(); // refresh list
+            await loadItems();
         } finally {
             setCreating(false);
         }
