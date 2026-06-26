@@ -1,4 +1,4 @@
-import { IAuthService, AuthSession, AuthSessionListener, Unsubscribe } from '@/core';
+import { IAuthService, AuthSession, AuthSessionListener, Unsubscribe } from '../../core';
 
 export class MockAuthService implements IAuthService {
     private session: AuthSession | null = null;

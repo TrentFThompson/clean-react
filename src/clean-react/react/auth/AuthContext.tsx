@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { AuthSession, IAuthService } from '@/core';
+import { AuthSession, IAuthService } from '../../core';
 
-export type AuthContextValue = {
+type AuthContextValue = {
     session: AuthSession | null;
     authService: IAuthService;
     isAuthenticated: boolean;
@@ -11,7 +11,19 @@ export type AuthContextValue = {
     logout?: IAuthService['logout'];
 };
 
-export const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+
+export function useAuthContext() {
+    const ctx = useContext(AuthContext);
+
+    if (!ctx?.authService) {
+        throw new Error(
+            'Auth service not provided. Pass `authService={...}` to <CleanReactProvider>`.',
+        );
+    }
+
+    return ctx;
+}
 
 export function AuthProvider({
     authService,

@@ -1,8 +1,15 @@
-import { useAuth } from 'clean-react/react';
+import { useAuthContext } from '../../clean-react/react';
+import { LoginForm } from './LoginForm';
+import { DataDemo } from './DataDemo';
 
 export function App() {
-    const auth = useAuth();
-    console.log(auth);
+    const { isAuthenticated, loginWithCredentials } = useAuthContext();
 
-    return <></>;
+    // If not logged in → show login form
+    if (!isAuthenticated) {
+        return <LoginForm onLogin={loginWithCredentials!} />;
+    }
+
+    // If logged in → show create + list
+    return <DataDemo />;
 }
