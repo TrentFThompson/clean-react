@@ -1,21 +1,41 @@
-import { useCreate, useDataList } from '../../clean-react/react';
-import { useState } from 'react';
+import { useDataContext } from '../../clean-react/react';
+import { useEffect, useState } from 'react';
 
 export function DataDemo() {
+    const { dataService } = useDataContext();
+
+    const [items, setItems] = useState<Array<{ id: string; text: string }> | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [creating, setCreating] = useState(false);
     const [text, setText] = useState('');
 
-    const { data: items, loading, refetch } = useDataList<{ id: string; text: string }>('items');
-    const { mutate: createItem, loading: creating } = useCreate<{ id: string; text: string }>(
-        'items',
-    );
+    // Load items on mount
+    async function loadItems() {
+        setLoading(true);
+        try {
+            const result = await dataService.list<{ id: string; text: string }>('items');
+            setItems(result);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        loadItems();
+    }, []);
 
     async function handleCreate(e: React.SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
         if (!text.trim()) return;
 
-        await createItem({ text });
-        setText('');
-        await refetch();
+        setCreating(true);
+        try {
+            await dataService.create('items', { text });
+            setText('');
+            await loadItems(); // refresh list
+        } finally {
+            setCreating(false);
+        }
     }
 
     return (

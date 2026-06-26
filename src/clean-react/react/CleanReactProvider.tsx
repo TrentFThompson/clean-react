@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 import { IAuthService, IDataService } from '../core';
 
-import { AuthProvider } from './auth';
-import { DataProvider } from './data';
+import { AuthProvider } from './AuthContext';
+import { DataProvider } from './DataContext';
 
 export type CleanReactContext = {
     authService?: IAuthService;

@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { AuthSession, IAuthService } from '../../core';
+import { AuthSession, IAuthService } from '../core';
 
 type AuthContextValue = {
     session: AuthSession | null;

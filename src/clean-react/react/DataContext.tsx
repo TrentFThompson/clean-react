@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react';
-import { IDataService } from '../../core';
+import { IDataService } from '../core';
 
 type DataContextValue = {
     dataService: IDataService;
@@ -16,7 +16,7 @@ export function useDataContext() {
         );
     }
 
-    return ctx.dataService;
+    return ctx;
 }
 
 export function DataProvider({
