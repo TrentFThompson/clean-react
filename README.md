@@ -17,6 +17,7 @@ Things we want to abstract away such as:
 - Authentication providers (OIDC, Firebase)
 - Some other fourth thing I'm sure (oh yeah caching!)
 - Local storage
+- Navigation
 
 are injected into our app in [one spot](./src/sample-app/src/main.tsx), allowing us to build our code independent of their implementation details.
 
