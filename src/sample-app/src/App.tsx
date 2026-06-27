@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../clean-react/react';
 import { LoginForm } from './LoginForm';
-import { DataDemo } from './DataDemo';
+import { Demo } from './Demo';
 
 export function App() {
     const { isAuthenticated, loginWithCredentials } = useAuthContext();
@@ -8,5 +8,5 @@ export function App() {
         return <LoginForm onLogin={loginWithCredentials!} />;
     }
 
-    return <DataDemo />;
+    return <Demo />;
 }

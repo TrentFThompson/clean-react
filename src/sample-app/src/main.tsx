@@ -2,7 +2,11 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { CleanReactProvider } from '../../clean-react/react';
-import { MockAuthService, MockDataService } from '../../clean-react/services';
+import {
+    MockAuthService,
+    MockDataService,
+    ConsoleLoggingService,
+} from '../../clean-react/services';
 
 import { App } from './App.tsx';
 
@@ -15,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
                     items: [{ id: '1', text: 'Hello world' }],
                 })
             }
+            loggingService={new ConsoleLoggingService()}
         >
             <App />
         </CleanReactProvider>

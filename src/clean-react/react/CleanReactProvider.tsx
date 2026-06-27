@@ -1,22 +1,23 @@
 import { ReactNode } from 'react';
 
-import { IAuthService, IDataService } from '../core';
+import { IAuthService, IDataService, ILoggingService } from '../core';
 
 import { AuthProvider } from './AuthContext';
 import { DataProvider } from './DataContext';
+import { LoggingProvider } from './LoggingProvider';
 
 export type CleanReactContext = {
     authService?: IAuthService;
     dataService?: IDataService;
+    loggingService?: ILoggingService;
 };
 
 export function CleanReactProvider({
     authService,
     dataService,
+    loggingService,
     children,
-}: {
-    authService?: IAuthService;
-    dataService?: IDataService;
+}: CleanReactContext & {
     children: ReactNode;
 }) {
     let tree = children;
@@ -26,6 +27,9 @@ export function CleanReactProvider({
     }
     if (dataService) {
         tree = <DataProvider dataService={dataService}>{tree}</DataProvider>;
+    }
+    if (loggingService) {
+        tree = <LoggingProvider loggingService={loggingService}>{tree}</LoggingProvider>;
     }
 
     return tree;

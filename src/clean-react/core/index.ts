@@ -1,3 +1,4 @@
 export * from './auth';
-export * from './data';
 export * from './errors';
+export * from './IDataService';
+export * from './ILoggingService';
