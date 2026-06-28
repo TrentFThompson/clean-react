@@ -10,6 +10,8 @@ Most react apps mix business logic, dependencies, and presentation into one laye
 
 By dependency injecting our services we can write hooks (our use cases) and components (the presentation layer) without intertwining the call signatures of other packages we didn't write.
 
+Our components and use cases only make references to Entities (types and interfaces in TypeScript) that we have defined internally, resulting in great type safety all the way down the chain.
+
 ## Codebase description
 
 If you look at the [clean-react](./src/clean-react/) folder you will see core entitites, service implementations, and the [CleanReactProvider](./src/clean-react/react/CleanReactProvider.tsx) which serves as our dependency injection container for the rest of our code.
@@ -25,7 +27,7 @@ Dependencies we may want to use include:
 - Local storage (browser storage, sessions, secure storage in Native)
 - Navigation (React Router, NextJs, Expo, etc)
 
-Thes packages are abstracted by interfaces, and the implementations are injected into our app in [one spot](./src/sample-app/src/main.tsx), allowing us to build the innter layers of our code independent of the implementation details of the services that drive it.
+These packages are abstracted by interfaces, and the implementations are injected into our app in [one spot](./src/sample-app/src/main.tsx), allowing us to build the innter layers of our code independent of the implementation details of the services that drive it.
 
 This gives us modular code that makes test coverage simple. We can mock the different services and inject those into our components and hooks, which allows for testing at multiple layers without relying on the actual services
 
