@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { AuthSession, IAuthService } from '../core';
 
+// tries to abstract away specifics of real auth provider services by exposing
+// optional, commonly named methods, making changing your auth provider easy
 type AuthContextValue = {
     session: AuthSession | null;
     authService: IAuthService;

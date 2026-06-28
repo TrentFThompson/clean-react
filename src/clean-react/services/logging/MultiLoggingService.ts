@@ -1,3 +1,13 @@
+// This file shows how you can inject multiple logging services into
+// one class that implements the ILoggingService, and now your consuming code will
+// be writing to 2 log services without changing anything
+
+// Example usage:
+// const logging = new MultiLoggingService([
+//   new ConsoleLoggingService(),
+//   new SentryLoggingService(),
+// ]);
+
 import { ILoggingService, LogLevel } from '../../core';
 
 export class MultiLoggingService implements ILoggingService {
@@ -22,11 +32,3 @@ export class MultiLoggingService implements ILoggingService {
         this.log('error', message, meta);
     }
 }
-
-// Example usage:
-// const logging = new MultiLoggingService([
-//   new ConsoleLoggingService(),
-//   new SentryLoggingService(),
-// ]);
-
-// Now you can inject multiple loggers into the app in different configurations
