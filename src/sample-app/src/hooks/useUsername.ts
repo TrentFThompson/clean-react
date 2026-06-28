@@ -1,6 +1,6 @@
 // useUsername.ts
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '../../clean-react/react';
+import { useAuthContext } from '../../../clean-react/react';
 
 export function useUsername() {
     const { authService } = useAuthContext();

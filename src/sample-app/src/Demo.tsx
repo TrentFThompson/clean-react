@@ -1,8 +1,6 @@
 import { useState } from 'react';
 
-import { useItems } from './useItem';
-import { useCreateItem } from './useCreateItem';
-import { useUsername } from './useUsername';
+import { useCreateItem, useUsername, useItems } from './hooks';
 
 export function Demo() {
     const { items, loading, reload } = useItems();
