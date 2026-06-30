@@ -27,7 +27,7 @@ Dependencies we may want to use include:
 - Local storage (browser storage, sessions, secure storage in Native)
 - Navigation (React Router, NextJs, Expo, etc)
 
-These packages are abstracted by interfaces, and the implementations are injected into our app in [one spot](./src/sample-app/src/main.tsx), allowing us to build the innter layers of our code independent of the implementation details of the services that drive it.
+These packages are abstracted by interfaces, and the implementations are injected into our app in [one spot](./src/sample-app/src/main.tsx), allowing us to build the inner layers of our code independent of the implementation details of the services that drive it.
 
 This gives us modular code that makes test coverage simple. We can mock the different services and inject those into our components and hooks, which allows for testing at multiple layers without relying on the actual services
 
